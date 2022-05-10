@@ -1,0 +1,23 @@
+{% extends "reg_base.html" %}
+
+
+{% block inputs %}
+	<div class="input-field">
+		<span>{{ form.email.label }}</span>
+		{{ form.email(style="font-size: 1.3em;") }}
+	</div>
+	<div class="input-field">
+		<span>{{ form.password.label }}</span>
+		{{ form.password(style="font-size: 1.3em;")}}
+	</div>
+{% endblock %}
+
+{% block buttons %}
+		<div>
+			{{ form.remember_me(style="transform: scale(1.4);") }}
+			{{ form.remember_me.label(style="font-size: 1.3em;")}}
+		</div>
+		{{ form.submit(type="submit", class="button-link") }}
+		{{ form.register(type="submit", class="button-link-yellow") }}
+		{{ form.forgot_password(type="submit", class="button-link-yellow") }}
+{% endblock %}

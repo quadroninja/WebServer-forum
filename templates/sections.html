@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+
+{% block add_head %}
+	<script type="text/javascript">
+		function submitForm(name){
+			document.getElementById(name).click();}
+	</script>
+{% endblock %}
+
+{% block content %}
+	{% for section in sections %}
+		<form method="POST" action="" name="form{{section.id}}" id="form{{section.id}}">
+			<div onclick="submitForm('form{{section.id}}sub');" class="section entry" id="section{{section.id}}">
+				<input id="form{{section.id}}sub" type="submit" style="display: none" name="form{{section.id}}">
+				<div style="min-width: 12vw">
+					<h2>{{section.title}}</h2>
+					<p style="margin-block-start: 1em;">Создано {{section.user.name}}</p>
+					<p>{{section.create_date.strftime('%d-%m-%Y')}}</p>
+				</div>
+				<div style="margin-left: 1vw; border: 2px solid white;">
+					<p>Описание:</p>
+					<p>{{section.about}}</p>
+				</div>
+			</div>
+		</form>
+	{% endfor %}
+	<form method="post">
+		<input class="button-link" type="submit" name="create_section" value="Создать">
+	</form>
+{% endblock %}

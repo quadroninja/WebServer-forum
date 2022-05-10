@@ -1,0 +1,9 @@
+{% extends "user_info.html" %}
+{% set user = current_user %}
+
+{% block additional %}
+    <form class="button-row" style="margin-top: 1vh;">
+        <input formmethod="post" type="submit" class="button-link" name="change_info" value="Изменить информацию">
+        <input formmethod="post" type="submit" class="button-link-red" style="margin-left: 10px" name="logout" value="Выйти">
+    </form>
+{% endblock %}

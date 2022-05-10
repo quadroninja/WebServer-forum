@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+
+		<meta charset="utf-8">
+		<link rel="stylesheet" type="text/css" href="../static/css/style.css" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		{% block add_head %}
+
+		{% endblock %}
+	</head>
+	<body>
+		<header>
+			<h1 class="header-left">{{ title }}</h1>
+			<div class="header-middle search">
+				<input type="text" size="40">
+				<a>Найти</a>
+			</div>
+			<div class="header-right">
+				{% if current_user.is_authenticated %}
+					<a class="auth-userlink" href="/me">{{current_user.name}}</a>
+				{% else %}
+					<a href="/register" class="reg-btn">Регистрация</a>
+					<a href="/login"  class="reg-btn">Вход</a>
+				{% endif %}
+			</div>
+		</header>
+		<main>
+			<div id="mySidebar" class="sidebar">
+				<a href="/index">Главная</a>
+				<a href="/sections">Разделы</a>
+				<a href="/users/1">Участники</a>
+				</br>
+				<a href="about">О нас</a>
+			</div>
+			<div  id="myContent" class="content">
+				{% block content %}
+
+				{% endblock %}
+			</div>
+			<div class="clear"></div>
+		</main>
+	</body>
+</html>

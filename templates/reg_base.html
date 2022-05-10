@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" href="../static/css/style.css">
+		<meta charset="utf-8">
+	</head>
+	<body style="height: 100%; width: 100%;">
+		<form action="" method="post" novalidate>
+
+    		{{ form.hidden_tag() }}
+			<div id="reg-frame">
+					<div id="reg-left">
+						<h1>{{ title }}</h1>
+						<div id="reg-inputs">
+							{% block inputs %}
+
+							{% endblock %}
+							<p style="color: #CF0110; font-size: 1.1em">{{message}}</p>
+						</div>
+					</div>
+
+					<div id="reg-right">
+						{% block buttons %}
+
+						{% endblock %}
+					</div>
+			</div>
+		</form>
+	</body>
+</html>

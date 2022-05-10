@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div id="user-wrapper">
+        <img src="../static/img/user.png" width="200px" height="200px">
+        <div id="user-info">
+            <h1>{{user.name}}</h1>
+            <p style="margin-top: -6vh;">{{user.about}}</p>
+            <p>Зарегистрирован: {{user.create_date.strftime('%d-%m-%Y')}}</p>
+        </div>
+    </div>
+    {% block additional %}
+
+    {% endblock %}
+{% endblock %}

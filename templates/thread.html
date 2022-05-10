@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+
+{% block add_head %}
+	<link rel="stylesheet" type="text/css" href="../../static/css/style.css" />
+{% endblock %}
+
+{% block content %}
+	<div class="scroller">
+		<button class="scroll-btn"><</button>
+		<span>1</span>
+		<input type="text">
+		<span>{{page_count}}</span>
+		<button class="scroll-btn">></button>
+	</div>
+	{% for message in chats %}
+		<div class="entry" id="entry{{message.id}}">
+			<div class="entry-info">
+				<p style="display: inline-block; margin: 0 10px; font-weight: bold;">{{message.user.name}}</p>
+				{% if message.response_to is not none%}
+							<p style="display: inline-block; margin: 0 10px;"><i>В ответ на сообщение <a href="#entry{{message.response_to}}">{{message.parent_msg.user.name}}</a></i></p>
+				{% endif %}
+				<p style="display: inline-block; margin: 0 10px;">{{message.create_date.strftime('%H:%M:%S 		%d-%m-%Y')}}</p>
+			</div>
+
+			<p>{{message.text}}</p>
+		</div>
+	{% endfor %}
+	<div class="scroller">
+		<button class="scroll-btn"><</button>
+		<span>1</span>
+		<input type="text">
+		<span>{{page_count}}</span>
+		<button class="scroll-btn">></button>
+	</div>
+	<div style="height: 50px"></div>
+	<form id="message-input" action="" method="post">
+		<textarea rows="2" class="message-field" style="height: 3em" name="message" {% if not current_user.is_authenticated %} disabled {% endif %}></textarea>
+		<input type="submit" value="Отправить" class="message-submit">
+	</form>
+
+{% endblock %}

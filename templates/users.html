@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block add_head %}
+	<script type="text/javascript">
+		function submitForm(name){
+			document.getElementById(name).click();}
+
+		function submitOnEnter(e)
+		{
+			if (e.keyCode == 13) document.getElementById('scroll-input-1').click();
+		}
+	</script>
+{% endblock %}
+
+
+
+{% macro scroller(formname) %}
+	<form method="POST" action="" id="{{formname}}">
+		<div class="scroller">
+			<button class="scroll-btn" type="submit" name="scroll-prev" value="<"><</button>
+			<span>1</span>
+			<input class="scroll-input" type="text" name="scroll-input" value="{{page_number}}" onclick="submitOnEnter(event);">
+			<input style="display: none;" type="submit" name="scroll-input-1" id="scroll-input-1">
+			<span>{{page_count}}</span>
+			<button class="scroll-btn" type="submit" name="scroll-next" value=">">></button>
+		</div>
+	</form>
+{% endmacro %}
+
+{% block content %}
+	{{ scroller("form1") }}
+	{% for user in users %}
+		<form method="POST" action="" name="form{{user.id}}" id="form{{user.id}}">
+			<div onclick="submitForm('form{{user.id}}sub');" class="section entry" id="user{{user.id}}">
+				<input id="form{{user.id}}sub" type="submit" style="display: none" name="user{{user.id}}">
+				<div style="min-width: 12vw">
+					<h2>{{user.name}}</h2>
+				</div>
+			</div>
+		</form>
+	{% endfor %}
+	{{ scroller("form2") }}
+{% endblock %}
